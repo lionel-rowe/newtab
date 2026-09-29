@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+	<style>
+	.fill {
+		fill: #3C4043;
+
+		@media (prefers-color-scheme: dark) {
+			fill: #C1C6DD;
+		}
+	}
+
+	.stroke:not(.fill) {
+		fill: none;
+	}
+
+	.stroke {
+		stroke: #3C4043;
+
+		@media (prefers-color-scheme: dark) {
+			stroke: #C1C6DD;
+		}
+	}
+
+	.icon {
+		transform: scale(0.86);
+		transform-origin: center;
+	}
+	</style>
+	<defs>
+		<polygon
+			points="0,100 20,0 80,0 100,100"
+			id="trapezium"
+			class="stroke fill"
+			stroke-linejoin="round"
+			stroke-width="15"
+			transform="translate(40 0) scale(0.2)"
+		/>
+	</defs>
+
+	<g class="icon">
+		<circle
+			class="stroke"
+			stroke-width="20"
+			cx="50"
+			cy="50"
+			r="28"
+		/>
+
+		<use
+			href="#trapezium"
+			class="fill"
+			transform-origin="50 50"
+			transform="rotate(0)"
+		/>
+
+		<use
+			href="#trapezium"
+			class="fill"
+			transform-origin="50 50"
+			transform="rotate(45)"
+		/>
+
+		<use
+			href="#trapezium"
+			class="fill"
+			transform-origin="50 50"
+			transform="rotate(90)"
+		/>
+
+		<use
+			href="#trapezium"
+			class="fill"
+			transform-origin="50 50"
+			transform="rotate(135)"
+		/>
+
+		<use
+			href="#trapezium"
+			class="fill"
+			transform-origin="50 50"
+			transform="rotate(180)"
+		/>
+
+		<use
+			href="#trapezium"
+			class="fill"
+			transform-origin="50 50"
+			transform="rotate(225)"
+		/>
+
+		<use
+			href="#trapezium"
+			class="fill"
+			transform-origin="50 50"
+			transform="rotate(270)"
+		/>
+
+		<use
+			href="#trapezium"
+			class="fill"
+			transform-origin="50 50"
+			transform="rotate(315)"
+		/>
+	</g>
+</svg>
