@@ -1,4 +1,4 @@
-import { DenoFmtStream } from '@li/deno-fmt'
+import { writeSvg } from './utils.ts'
 
 const size = 100
 const scale = 0.86
@@ -45,10 +45,4 @@ function createSvg() {
 	return svg
 }
 
-const svg = createSvg()
-const stream = new Blob([svg])
-	.stream()
-	.pipeThrough(new DenoFmtStream({ ext: 'svg' }))
-
-const f = await Deno.open('favicon.svg', { write: true, create: true, truncate: true })
-await stream.pipeTo(f.writable)
+await writeSvg('favicon.svg', createSvg())

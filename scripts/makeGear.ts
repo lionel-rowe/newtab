@@ -1,24 +1,42 @@
-import { DenoFmtStream } from '@li/deno-fmt'
+import { writeSvg } from './utils.ts'
 
 const size = 100
 const scale = 0.86
 
 const radius = size / 2
 
-const _ringRadius = 38
+const _ringRadius = 40
 const middleRadius = 18
 const strokeWidth = _ringRadius - middleRadius
 const ringRadius = _ringRadius - (strokeWidth / 2)
 
-const numDashes = 8
+const numTeeth = 8
 
 const rounding = 15
 const trapeziumScale = 0.2
 const translateX = radius - (50 * trapeziumScale)
 
+const startOffset = 0
+const endOffset = 20
+const topIsTooth = true
+
 function createSvg() {
-	const trapeziums = Array.from({ length: numDashes }, (_, i) => {
-		const angle = (360 / numDashes) * i
+	const trapezium = `
+		<polygon
+			points="${startOffset},100 ${endOffset},0 ${100 - endOffset},0 ${100 - startOffset},100"
+			id="trapezium"
+			class="stroke fill"
+			stroke-linejoin="round"
+			stroke-width="${rounding}"
+			transform="translate(${translateX} 0) scale(${trapeziumScale})" 
+		/>
+	`
+
+	const trapeziums = Array.from({ length: numTeeth }, (_, i) => {
+		let angle = (360 / numTeeth) * i
+		if (!topIsTooth) {
+			angle += 360 / (2 * numTeeth)
+		}
 
 		return `
 			<use
@@ -40,7 +58,7 @@ function createSvg() {
 					fill: #C1C6DD;
 				}
 			}
-				
+
 			.stroke:not(.fill) {
 				fill: none;
 			}
@@ -59,14 +77,7 @@ function createSvg() {
 			}
 			</style>
 			<defs>
-				<polygon
-					points="0,100 20,0 80,0 100,100"
-					id="trapezium"
-					class="stroke fill"
-					stroke-linejoin="round"
-					stroke-width="${rounding}"
-					transform="translate(${translateX} 0) scale(${trapeziumScale})" 
-				/>
+				${trapezium}
 			</defs>
 
 			<g class="icon">
@@ -81,13 +92,8 @@ function createSvg() {
 			</g>
 		</svg>
 	`
+
 	return svg
 }
 
-const svg = createSvg()
-const stream = new Blob([svg])
-	.stream()
-	.pipeThrough(new DenoFmtStream({ ext: 'svg' }))
-
-const f = await Deno.open('gear.svg', { write: true, create: true, truncate: true })
-await stream.pipeTo(f.writable)
+await writeSvg('gear.svg', createSvg())

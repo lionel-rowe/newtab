@@ -39,10 +39,10 @@
 	<g class="icon">
 		<circle
 			class="stroke"
-			stroke-width="20"
+			stroke-width="22"
 			cx="50"
 			cy="50"
-			r="28"
+			r="29"
 		/>
 
 		<use
