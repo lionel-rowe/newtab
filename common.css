@@ -1,0 +1,52 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+:root,
+:host {
+	/* prevent inherited styles from affecting component */
+	all: initial;
+
+	color-scheme: light dark;
+
+	--rem: 16px;
+
+	--border-color: #bbb;
+	--border-width: 1px;
+	--border-radius: calc(0.2 * var(--rem));
+
+	background: hsl(197deg 8% 92%);
+	@media (prefers-color-scheme: dark) {
+		background: hsl(197deg 8% 15%);
+	}
+
+	/* https://systemfontstack.com/ */
+	--prose-font:
+		-apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, Adwaita Sans, Cantarell,
+		Ubuntu, roboto, noto, helvetica, arial, sans-serif;
+	--code-font: Menlo, Consolas, Monaco, Adwaita Mono, Liberation Mono, Lucida Console, monospace;
+
+	font-family: var(--prose-font);
+
+	/* https://stackoverflow.com/questions/38498539/what-is-the-default-style-of-the-blue-focus-outline-in-chrome */
+	--focus-outline: 5px auto -webkit-focus-ring-color;
+
+	--accent-color: #360eff;
+
+	accent-color: var(--accent-color);
+	--accent-text-color: white;
+	@supports (color: contrast-color(#fff)) {
+		--accent-text-color: contrast-color(var(--accent-color));
+	}
+
+	--rem: 16px;
+}
+
+pre,
+code,
+kbd,
+samp {
+	font-family: var(--code-font);
+}

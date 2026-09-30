@@ -2,62 +2,18 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>New Tab</title>
+		<title>New tab</title>
 		<script type="module" src="clocks.js"></script>
 		<link rel="shortcut icon" href="favicon.svg">
-		<style>
-		:root {
-			color-scheme: light dark;
-
-			@media (prefers-color-scheme: dark) {
-				background: hsl(197deg 8% 15%);
-			}
-		}
-		main {
-			align-items: center;
-			justify-content: center;
-			display: flex;
-			height: calc(100vh - 50px);
-		}
-		tz-clock-analog[time="Europe/London"] {
-			font-size: 2rem;
-		}
-
-		tz-clock-analog:not([time="Europe/London"]) {
-			opacity: 0.9;
-		}
-		.clocks {
-			font-size: 1.2rem;
-			gap: 1.5em;
-			display: flex;
-			flex-direction: row;
-			align-items: center;
-		}
-		</style>
+		<link rel="stylesheet" href="tab.css">
 	</head>
 	<body>
-		<img style="--size: 30px; width: var(--size); height: var(--size); float: right" alt="Settings" src="gear.svg">
+		<button id="settings">
+			<img alt="Settings" src="gear.svg">
+		</button>
 		<main>
-			<div class="clocks">
-				<tz-clock-analog
-					second-hand="false"
-					time="Asia/Shanghai"
-					gloss="Shanghai"
-					hour-cycle="24"
-				></tz-clock-analog>
-				<tz-clock-analog
-					time="Europe/London"
-					gloss="St Helens"
-					hour-cycle="24"
-				></tz-clock-analog>
-				<tz-clock-analog
-					second-hand="false"
-					time="America/Mexico_City"
-					gloss="Puebla"
-					hour-cycle="24"
-				></tz-clock-analog>
-			</div>
+			<div id="clocks" class="clocks"></div>
 		</main>
-		<script type="module" src="./script.mjs"></script>
+		<script type="module" src="./tab.mjs"></script>
 	</body>
 </html>

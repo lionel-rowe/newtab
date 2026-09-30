@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>World Clocks New Tab Options</title>
+		<link rel="stylesheet" href="options.css">
+		<template id="clock-template">
+			<fieldset id="clocks[0]">
+				<legend>#1</legend>
+				<div class="fields inline">
+					<label class="label"
+						for="clocks[0].tz">Timezone <select id="clocks[0].tz" name="clocks[0].tz"></select></label>
+					<label class="label"
+						for="clocks[0].gloss">Gloss <input id="clocks[0].gloss" name="clocks[0].gloss"></label>
+				</div>
+			</fieldset>
+		</template>
+	</head>
+
+	<body>
+		<h1>World Clocks New Tab Options</h1>
+
+		<form id="form">
+			<fieldset id="clocks">
+				<legend>Clocks</legend>
+			</fieldset>
+
+			<div>
+				<button type="submit">💾 Save</button>
+				<button type="reset">Reset All</button>
+			</div>
+
+			<div id="status"></div>
+		</form>
+
+		<script type="module" src="options-ui.mjs"></script>
+	</body>
+</html>

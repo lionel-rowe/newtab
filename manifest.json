@@ -1,14 +1,19 @@
 {
 	"manifest_version": 3,
 
-	"name": "My New Tab",
-	"description": "Replace default new tab page in Chrome with a useful new tab page.",
+	"name": "World Clocks New Tab",
+	"description": "Replace default new tab page in Chrome with world clocks.",
 	"version": "1.0",
 
 	"chrome_url_overrides": {
 		"newtab": "tab.html"
 	},
 	"permissions": [
-		"bookmarks"
-	]
+		"bookmarks",
+		"storage"
+	],
+	"options_ui": {
+		"page": "options.html",
+		"open_in_tab": true
+	}
 }

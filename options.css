@@ -1,0 +1,169 @@
+@import url('./common.css');
+
+body {
+	/* Override the injected stylesheet, which sets `font-size` at `75%` for some reason. */
+	/* https://stackoverflow.com/questions/73162179/what-is-the-stylesheet-injected-by-chrome-in-local-extension-pages */
+	font-family: inherit;
+	font-size: inherit;
+
+	display: block;
+	max-width: 80ch;
+	margin: 2em auto;
+	padding: 0 0.5em;
+}
+
+#form {
+	--padding-x: 0.5em;
+	--padding-y: 0.1em;
+	--height: calc(1.6 * var(--rem));
+
+	& > * {
+		margin-block: 1em;
+	}
+}
+
+small {
+	font-size: small;
+}
+
+fieldset {
+	border: 1px solid color-mix(in srgb, ButtonBorder, transparent 60%);
+	border-radius: var(--border-radius);
+
+	> p {
+		&:first-of-type {
+			margin-top: 0;
+		}
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+}
+
+button {
+	--button-bg: ButtonFace;
+	--button-color: ButtonText;
+
+	background: var(--button-bg);
+	color: var(--button-color);
+	border: none;
+	padding: var(--padding-y) var(--padding-x);
+	border-radius: var(--border-radius);
+	cursor: pointer;
+	min-width: 6em;
+	min-height: var(--height);
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	line-height: 1;
+
+	&:hover {
+		background: color-mix(in srgb, var(--button-bg), white 30%);
+	}
+
+	&[type='submit'] {
+		--button-bg: var(--accent-color);
+		--button-color: var(--accent-text-color);
+	}
+}
+
+input:is([type='text'], [type='number'], [type='color'], :not([type])) {
+	border: 1px solid color-mix(in srgb, ButtonBorder, transparent 60%);
+	border-radius: var(--border-radius);
+
+	min-height: var(--height);
+
+	&:disabled {
+		border: 1px solid color-mix(in srgb, ButtonBorder, transparent 80%);
+	}
+}
+
+input:is([type='text'], [type='number'], :not([type])) {
+	padding: 0 var(--padding-x);
+}
+
+.fields {
+	display: flex;
+	flex-direction: column;
+	gap: 0.6em 1.5em;
+
+	label {
+		font-weight: bold;
+	}
+
+	.details {
+		display: flex;
+	}
+
+	.label {
+		input {
+			&[type='number'] {
+				max-width: 5em;
+			}
+			&:is([type='text'], :not([type])) {
+				width: 12em;
+			}
+		}
+	}
+
+	&.inline {
+		flex-direction: row;
+		.label {
+			display: flex;
+			flex-direction: column;
+			font-size: small;
+		}
+	}
+
+	&:not(.inline) {
+		.label {
+			display: grid;
+			grid-template-columns: 12em 1fr;
+			align-items: baseline;
+		}
+	}
+
+	&#shortkey-fields {
+		input {
+			font-family: monospace;
+		}
+
+		.shortkey__control {
+			&:has([disabled]) {
+				input {
+					background: none;
+					border: none;
+				}
+				.shortkey__display {
+					left: 0;
+					opacity: 0.8;
+				}
+			}
+			a[href] {
+				font-weight: normal;
+			}
+			.shortkey__unset {
+				font-size: 0.8em;
+				opacity: 0.6;
+				font-weight: normal;
+			}
+
+			.shortkey__input {
+				position: relative;
+				font-weight: normal;
+				> span {
+					position: absolute;
+					padding: 0;
+					top: var(--padding-y);
+					left: var(--padding-x);
+				}
+			}
+			input {
+				color: transparent;
+				&::selection {
+					background: transparent;
+				}
+			}
+		}
+	}
+}
