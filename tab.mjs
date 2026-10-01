@@ -26,5 +26,7 @@ for (const [i, clock] of options.clocks.entries()) {
 	$clock.setAttribute('gloss', clock.gloss ?? pretty)
 	$clock.setAttribute('hour-cycle', '24')
 	$clocks.appendChild($clock)
-	$clock.setAttribute('second-hand', String(i === 1))
+	const isPrimary = i === 1
+	$clock.setAttribute('second-hand', String(isPrimary))
+	$clock.classList.toggle('primary', isPrimary)
 }

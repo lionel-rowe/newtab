@@ -6,11 +6,12 @@ main {
 	display: flex;
 	height: calc(100vh - 50px);
 }
-tz-clock-analog[time="Europe/London"] {
+
+tz-clock-analog.primary {
 	font-size: 2rem;
 }
 
-tz-clock-analog:not([time="Europe/London"]) {
+tz-clock-analog:not(.primary) {
 	opacity: 0.9;
 }
 .clocks {
